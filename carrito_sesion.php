@@ -104,7 +104,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'clear') {
               class="btn-accion btn-volver">⬅ Seguir Comprando</a>
             <a
               href="carrito_sesion.php?action=clear"
-              class="btn-accion btn-vaciar">🗑 Vaciar Carrito</a>
+              class="btn-accion btn-vaciar">Vaciar Carrito</a>
         </div>
     <?php endif; ?>
 

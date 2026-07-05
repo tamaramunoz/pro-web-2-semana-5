@@ -20,12 +20,12 @@ body {
 }
 
 .tabla-cuadrcula th { 
-  background-color: #f2f2f2; 
+  background-color: #b0e1ff; 
 }
 
 .total-fila { 
   font-weight: bold; 
-  background-color: #e9e9e9; 
+  background-color: #d4efff; 
 }
 
 .btn-accion { 
@@ -40,14 +40,26 @@ body {
 
 .btn-vaciar { 
   background-color: #dc3545; 
+  border-radius: 8px; 
+  padding: 16px;
+}
+
+.btn-vaciar:hover { 
+  background-color: #c32f3e; 
 }
 
 .btn-volver { 
-  background-color: #6c757d; 
-  margin-right: 10px; 
+  background-color: #005C97; 
+  margin-right: 16px;
+  border-radius: 8px; 
+  padding: 16px;
+}
+
+.btn-volver:hover { 
+  background-color: #1d5c83; 
 }
 
 .footer-tabla { 
   text-align: right; 
-  margin-top: 20px; 
+  margin-top: 24px; 
 }

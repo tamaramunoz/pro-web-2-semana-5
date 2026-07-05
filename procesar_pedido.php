@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "</ul>";
 
     echo "<h3>Prueba del Motor de Búsqueda de la Clase:</h3>";
-    $criterioDePrueba = "Express"; 
+    $criterioDePrueba = "Express";
     echo "<p>Buscando coincidencia con el término '<strong>{$criterioDePrueba}</strong>'...</p>";
     
     if ($nuevoPedido->coincideConBusqueda($criterioDePrueba)) {
