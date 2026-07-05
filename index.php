@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +15,11 @@
 
     <header class="store-header">
         <h2>Tienda Online</h2>
-        <div id="cart-status">Carrito: <span id="cart-counter">0</span> productos</div>
+         <a href="carrito_sesion.php" id="cart-status" class="cart-button">
+          Carrito: <span id="cart-counter"><?php
+          echo isset($_SESSION['carrito_tienda']) ? array_sum(array_column($_SESSION['carrito_tienda'], 'cantidad')) : 0;
+        ?></span> productos
+</a>
     </header>
 
     <div class="search-container">
@@ -28,7 +33,6 @@
     <hr class="section-divider">
 
     <?php
-    // función PHP para generar y renderizar las reseñas
     function generarTarjetaResena($usuario, $calificacion, $comentario) {
         $calificacion = (int)$calificacion;
         if ($calificacion < 1) $calificacion = 1;
@@ -66,7 +70,6 @@
         </form>
 
         <?php
-        // renderizado de la reseña en la página
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar_resena'])) {
             echo "<h4>Reseñas Recientes:</h4>";
             echo generarTarjetaResena($_POST['usuario'], $_POST['calificacion'], $_POST['comentario']);
@@ -100,17 +103,17 @@
           <p>
               <label for="descripcion">Descripción del Pedido:</label><br>
               <input 
-                type="text" 
-                id="descripcion" 
-                name="descripcion" 
+                type="text"
+                id="descripcion"
+                name="descripcion"
                 placeholder="Ej: Pedido de consolas para sucursal" 
                 required>
           </p>
           <p>
               <label for="observaciones">Observaciones Especiales:</label><br>
-              <textarea 
-                id="observaciones" 
-                name="observaciones" 
+              <textarea
+                id="observaciones"
+                name="observaciones"
                 placeholder="Ej: Dejar con conserjería...">
             </textarea>
           </p>

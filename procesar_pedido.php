@@ -1,5 +1,4 @@
 <?php
-// requerimos el archivo de la clase Pedido para poder instanciar objetos
 require_once 'Pedido.php';
 ?>
 <!DOCTYPE html>
@@ -15,17 +14,14 @@ require_once 'Pedido.php';
 echo "<div class='processor-container'>";
 echo "<h2 class='processor-title'>Confirmación del Pedido</h2>";
 
-// validamos que la información provenga estrictamente del método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // recuperación de variables
     $producto      = isset($_POST['producto']) ? trim($_POST['producto']) : '';
     $unidades      = isset($_POST['unidades']) ? $_POST['unidades'] : 0;
     $tipo_pedido   = isset($_POST['tipo_pedido']) ? $_POST['tipo_pedido'] : '';
     $descripcion   = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : '';
     $observaciones = isset($_POST['observaciones']) ? trim($_POST['observaciones']) : 'Sin observaciones.';
 
-    // validación preventiva en el backend
     if (empty($producto) || empty($unidades) || empty($tipo_pedido) || empty($descripcion)) {
         echo "<p class='processor-error'>Error: Campos obligatorios vacíos.</p>";
         echo "<a href='javascript:history.back()' class='btn-back'>Regresar al formulario</a>";
@@ -33,10 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // instanciación del objeto avanzado Pedido con las variables recuperadas
     $nuevoPedido = new Pedido($descripcion, $tipo_pedido, $producto, $unidades, $observaciones);
 
-    // presentación de la data
     echo "<p class='processor-success'><strong>Instanciación Exitosa:</strong> Se ha creado un objeto de la clase Pedido en la memoria del servidor.</p>";
     
     echo "<h3>Detalles recuperados:</h3>";
@@ -46,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<li><strong>Comentarios / Notas:</strong> " . htmlspecialchars($nuevoPedido->observaciones) . "</li>";
     echo "</ul>";
 
-    // simulación automática del método de búsqueda interna personalizada
     echo "<h3>Prueba del Motor de Búsqueda de la Clase:</h3>";
     $criterioDePrueba = "Express"; 
     echo "<p>Buscando coincidencia con el término '<strong>{$criterioDePrueba}</strong>'...</p>";

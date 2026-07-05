@@ -72,6 +72,7 @@ searchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") searchProducts();
 });
 
+// vinculamos el carrito mediante fetch para la comunicación con el backend
 function vincularBotonesCarrito() {
     const botones = document.querySelectorAll(".add-to-cart-btn");
     botones.forEach(boton => {
@@ -84,9 +85,19 @@ function vincularBotonesCarrito() {
           const productoSeleccionado = stocktaking.find(p => p.id === idProducto);
           
           if (productoSeleccionado) {
-              carrito.push(productoSeleccionado);
-              cartCounter.textContent = carrito.length;
-              notificationPush(`¡${productoSeleccionado.nombre} fue añadido al carrito!`);
+              fetch(`carrito_sesion.php?action=add&id=${idProducto}`)
+                  .then(response => {
+                      if (response.ok) {
+                          let conteoActual = parseInt(cartCounter.textContent) || 0;
+                          cartCounter.textContent = conteoActual + 1;
+                          notificationPush(`¡${productoSeleccionado.nombre} fue añadido al carrito exitosamente!`);
+                      } else {
+                          console.error("El servidor rechazó la operación.");
+                      }
+                  })
+                  .catch(error => {
+                      console.error("Error en la comunicación con el servidor PHP:", error);
+                  });
           }
       });
     });
